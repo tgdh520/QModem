@@ -2605,10 +2605,10 @@ static const struct net_device_ops mhi_netdev_ops_ip = {
 static void mhi_netdev_get_drvinfo (struct net_device *ndev, struct ethtool_drvinfo *info)
 {
 	//struct mhi_netdev *mhi_netdev = ndev_to_mhi(ndev);
-	/* strlcpy() is deprecated in kernel 6.8.0+, using strscpy instead */
+	/* () is deprecated in kernel 6.8.0+, using strscpy instead */
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(6,8,0))
-	strlcpy(info->driver, "pcie_mhi", sizeof(info->driver));
-	strlcpy(info->version, PCIE_MHI_DRIVER_VERSION, sizeof(info->version));
+	strscpy(info->driver, "pcie_mhi", sizeof(info->driver));
+	strscpy(info->version, PCIE_MHI_DRIVER_VERSION, sizeof(info->version));
 #else
 	strscpy(info->driver, "pcie_mhi", sizeof(info->driver));
 	strscpy(info->version, PCIE_MHI_DRIVER_VERSION, sizeof(info->version));
